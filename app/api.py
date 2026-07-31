@@ -4,8 +4,9 @@ api.py
 REST API for PhishGuard AI
 """
 
-from flask import Flask, request, jsonify
 
+from src.predict import predict_url
+from flask import Flask,request,jsonify
 from src.predict import predict_url
 
 app = Flask(__name__)
@@ -15,8 +16,8 @@ app = Flask(__name__)
 # Home
 # ---------------------------------------------------
 
-@app.route("/", methods=["GET"])
-def home():
+@app.route("/api", methods=["GET"])
+def apihome():
 
     return jsonify({
 
@@ -33,8 +34,8 @@ def home():
 # Health Check
 # ---------------------------------------------------
 
-@app.route("/health", methods=["GET"])
-def health():
+@app.route("/api/health", methods=["GET"])
+def apihealth():
 
     return jsonify({
 
@@ -47,8 +48,8 @@ def health():
 # Predict
 # ---------------------------------------------------
 
-@app.route("/predict", methods=["POST"])
-def predict():
+@app.route("/api/predict", methods=["POST"])
+def apipredict():
 
     data = request.get_json()
 
@@ -101,8 +102,8 @@ def predict():
 # Batch Prediction
 # ---------------------------------------------------
 
-@app.route("/predict/batch", methods=["POST"])
-def batch_predict():
+@app.route("/api/predict/batch", methods=["POST"])
+def apibatch_predict():
 
     data = request.get_json()
 

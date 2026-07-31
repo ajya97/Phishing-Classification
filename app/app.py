@@ -5,12 +5,14 @@ Flask Application for
 Phishing URL Detection
 """
 
-from flask import Flask, render_template, request
+from flask import render_template, request
 from src.predict import predict_url
 from src.train import train_models
 from src.evaluate import evaluate
 
-app = Flask(__name__)
+
+
+from app.api import *
 
 
 # -------------------------------------
