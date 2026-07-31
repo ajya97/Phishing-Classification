@@ -176,12 +176,20 @@ def entropy(url):
 
     return round(entropy, 4)
 
+def get_base_url(url):
+    
+    parsed = urlparse(url)
+
+    return f"{parsed.scheme}://{parsed.netloc}"
+
 
 # ---------------------------------------------------
 # Main Feature Extraction
 # ---------------------------------------------------
 
 def extract_features(url):
+
+    url = get_base_url(url)
 
     return {
 

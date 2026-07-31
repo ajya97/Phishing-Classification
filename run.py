@@ -4,7 +4,6 @@ run.py
 Project Entry Point
 Run the Flask Application
 """
-
 from app.app import app
 
 def main():
