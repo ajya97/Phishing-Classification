@@ -4,22 +4,11 @@ predict.py
 Load trained model and predict phishing URLs
 """
 
-import joblib
 import pandas as pd
 
 from src.config import MODEL_PATH
+from src.utils import load_model
 from src.feature_engineering import extract_features
-
-
-# -------------------------------------------------
-# Load Model
-# -------------------------------------------------
-
-def load_model():
-
-    model = joblib.load(MODEL_PATH)
-
-    return model
 
 
 # -------------------------------------------------
@@ -28,7 +17,7 @@ def load_model():
 
 def predict_url(url):
 
-    model = load_model()
+    model = load_model(MODEL_PATH)
 
     features = extract_features(url)
 

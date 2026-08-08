@@ -131,7 +131,6 @@ def tld(url):
 
     parts = domain.split(".")
 
-    # enc.loc[parts]
     for part in parts:
         if part in enc.index:
             return enc.loc[part].iloc[0]

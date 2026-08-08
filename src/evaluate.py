@@ -30,6 +30,7 @@ from src.config import (
     RANDOM_STATE,
     REPORT_PATH
 )
+from src.utils import load_csv,load_model
 
 
 # ---------------------------------------
@@ -38,7 +39,7 @@ from src.config import (
 
 def load_data():
 
-    df = pd.read_csv(DATA_PATH)
+    df = load_csv(DATA_PATH)
 
     X = df.drop(columns=[TARGET_COLUMN])
     y = df[TARGET_COLUMN]
@@ -52,14 +53,6 @@ def load_data():
     )
 
 
-# ---------------------------------------
-# Load Model
-# ---------------------------------------
-
-def load_model():
-
-    return joblib.load(MODEL_PATH)
-
 
 # ---------------------------------------
 # Evaluate
@@ -71,7 +64,7 @@ def evaluate():
 
     X_train, X_test, y_train, y_test = load_data()
 
-    model = load_model()
+    model = load_model(MODEL_PATH)
 
     predictions = model.predict(X_test)
 

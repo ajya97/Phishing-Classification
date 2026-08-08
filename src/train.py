@@ -9,6 +9,7 @@ Save the best model
 import pandas as pd
 
 from sklearn.model_selection import train_test_split
+from sklearn.preprocessing import StandardScaler
 from sklearn.metrics import accuracy_score
 
 from sklearn.ensemble import RandomForestClassifier
@@ -19,11 +20,12 @@ from catboost import CatBoostClassifier
 
 from src.config import (
     DATA_PATH,
+    MODEL_PATH,
     TARGET_COLUMN,
     RANDOM_STATE,
     TEST_SIZE
 )
-from src.utils import save_model
+from src.utils import save_model,load_csv
 
 
 
@@ -33,13 +35,12 @@ from src.utils import save_model
 
 def load_data():
 
-    df = pd.read_csv(DATA_PATH)
+    df = load_csv(DATA_PATH)
 
     X = df.drop(columns=[TARGET_COLUMN])
     y = df[TARGET_COLUMN]
 
     return X, y
-
 
 # ----------------------------
 # Models
@@ -133,5 +134,5 @@ def train_models():
     print(f"Accuracy   : {best_score:.4f}")
     print("=" * 60)
 
-    save_model(best_model, "models/best_model.pkl")
+    save_model(best_model, MODEL_PATH)
 
